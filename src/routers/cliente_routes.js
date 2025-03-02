@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import verificarSesion from '../middleware/authVerifier.js'
 
 // Definición de rutas con ExpressJS
 const router = Router(); 
@@ -14,10 +15,10 @@ import {
 
 
 // Define las rutas directamente en el router
-router.post('/cliente/registro', registrarCliente);
-router.get('/cliente/ver', obtenerClientePorId);
-router.get('/clientes', listarClientes);
-router.put('/cliente/actualizar', modificarClientePorId);
-router.delete('/cliente/eliminar', eliminarClientePorId);
+router.post('/cliente/registro', verificarSesion, registrarCliente);
+router.get('/cliente/ver', verificarSesion, obtenerClientePorId);
+router.get('/clientes', verificarSesion, listarClientes);
+router.put('/cliente/actualizar', verificarSesion, modificarClientePorId);
+router.delete('/cliente/eliminar', verificarSesion, eliminarClientePorId);
 
 export default router

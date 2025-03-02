@@ -1,33 +1,67 @@
 import { supabase } from '../database/database.js';  // Importamos la conexión a Superbase
 import Cliente from '../database/models/Cliente.js'; // Accedemos al modelo Cliente
 
-// Función para registrar un nuevo cliente
-const registrarCliente = async (clienteData) => {
+const registrarCliente = async (req, res) => {
+    const { cedula, nombre, apellido, ciudad, email, direccion, telefono, fecha_nacimiento } = req.body;
+
     try {
-        // Validar y crear el objeto Cliente
-        const cliente = new Cliente(clienteData);
+        // Verifica que todos los campos estén presentes
+        if (!cedula || !nombre || !apellido || !ciudad || !direccion || !email || !fecha_nacimiento) {
+            return res.status(400).json({ message: "Todos los campos son obligatorios." });
+        }
+
+        // Imprimir los datos recibidos
+        console.log("Datos recibidos:", req.body);
+
+        // Verifica que la cédula tenga entre 10 y 13 caracteres
+        if (cedula.length < 10 || cedula.length > 13) {
+            return res.status(400).json({ message: "La cédula debe contener entre 10 y 13 caracteres." });
+        }
+
+        // Verifica que el teléfono tenga máximo 10 dígitos
+        if (telefono.length > 10) {
+            return res.status(400).json({ message: "El teléfono debe tener máximo 10 dígitos." });
+        }
+
+        // Crear el objeto Cliente
+        const clienteData = {
+            cedula,
+            nombre,
+            apellido,
+            ciudad,
+            email,
+            direccion,
+            telefono,
+            fecha_nacimiento
+        };
+
+        console.log("Objeto cliente creado:", clienteData);
+
+        const cliente = new Cliente(clienteData); // Aquí se valida la cédula
 
         // Insertar cliente en la base de datos
-        const { data, error } = await supabase.from('cliente').insert([
-            {
-                cedula: cliente.cedula,
-                nombre: cliente.nombre,
-                apellido: cliente.apellido,
-                ciudad: cliente.ciudad,
-                email: cliente.email,
-                direccion: cliente.direccion,
-                telefono: cliente.telefono,
-                fecha_nacimiento: cliente.fecha_nacimiento
-            }
-        ]);
+        const { data, error } = await supabase.from('cliente').insert([{
+            cedula: cliente.cedula,
+            nombre: cliente.nombre,
+            apellido: cliente.apellido,
+            ciudad: cliente.ciudad,
+            email: cliente.email,
+            direccion: cliente.direccion,
+            telefono: cliente.telefono,
+            fecha_nacimiento: cliente.fecha_nacimiento
+        }]);
 
-        if (error) throw error;
+        // Si ocurre un error al insertar
+        if (error) {
+            console.error("Error al insertar en la base de datos:", error);
+            return res.status(500).json({ message: "Error al registrar el cliente en la base de datos.", error });
+        }
 
-        console.log('Cliente registrado con éxito:', data);
-        return data;
+        // Cliente registrado correctamente
+        return res.status(201).json({ message: 'Cliente registrado con éxito.', data });
     } catch (e) {
         console.error('Error al registrar cliente:', e.message);
-        throw e;
+        return res.status(500).json({ message: 'Hubo un problema al registrar el cliente.' });
     }
 };
 
