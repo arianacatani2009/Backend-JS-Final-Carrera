@@ -120,16 +120,16 @@ El proyecto se compone de los siguientes archivos y directorios, fundamentales p
 
 La base de datos posee una estructura sencilla, ligada a las claves primarias y cardinalidades de las diferentes entidades. El mismo sea ha realizado con PostgresSQL y se define de la siguiente manera:
 
-![img](images\EsquemaDB.png "Esquema de la base de datos")
+![img](./images/EsquemaDB.png "Esquema de la base de datos")
 
 Y las tablas se definen de la siguiente manera:
 
 
 |       Tabla Usuario       |      Tabla Clientes      |
 | :-----------------------: | :-----------------------: |
-| ![img](images\Usuario.png) | ![img](images\Clientes.png) |
+| ![img](./images/Usuario.png) | ![img](./images/Clientes.png) |
 |   **Tabla Productos**   |    **Tabla Pedidos**    |
-| ![img](images\Producto.png) | ![img](images\Pedidos.png) |
+| ![img](./images/Producto.png) | ![img](./images/Pedidos.png) |
 
 ### Construir el proyecto
 
@@ -144,15 +144,15 @@ Para construir el proyecto desde el código fuentes, es necesario contar con Nod
 - #### Conexión a la base de datos
 - La conexión a la base de datos se realiza mediante la dirección del proyecto, una URL entregada por SUPABASE como indentificador primario de los proyectos; y, la API Key asociada al mismo. Esta comunicación se establece a través del cliente proporcionado por la librería de Supabase JS.
 
-  ![img](images\conexion.png)
+  ![img](./images/conexion.png)
 - #### Definición de rutas
 - La rutas se definen como elementos de comunicación entre un enlace (dirección web) y las funciones asociadas a estas. Con las rutas podemos identificar las diferentes acciones que se realizaron en determinados puntos de la aplicación, ya sea desde un registro o manejo de tokens, a acciones más complejas, como listas de pedidos, etc.
 
-  ![img](images\rutas.png)
+  ![img](./images/rutas.png)
 - #### Definición de controladores
 - Los controladores son las funciones que realizan diferentes acciones y consultas en nuestra aplicación. Desde un registro de cliente a una visualización de datos, la facilidad con la que los controladores agilizan el proceso de programación se limita a la necesidad de la misma. Estos controladores se asocian a una ruta (y a un middleware, si es necesario, para realizar una capa extra de funcionalidad antes de llamar al flujo de trabajo principal).
 
-  ![img](images\controladores.png)
+  ![img](./images/controladores.png)
 
 ### Documentación de la API
 
