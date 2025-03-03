@@ -84,7 +84,7 @@ export const obtenerProductos = async (req, res) => {
         }
 
         if (error) {
-            throw error;
+            return res.status(400).json({ message: "Error en la base de datos" });
         }
 
         return res.status(200).json({ message: "Lista de productos obtenida con éxito.", data });
@@ -102,7 +102,7 @@ export const obtenerProductoPorId = async (req, res) => {
         const { data, error } = await supabase.from('producto').select('*').eq('id', id).single();
 
         if (error) {
-            throw error;
+            return res.status(404).json({ message: "Error en la base de datos" });
         }
 
         if (!data) {
@@ -126,7 +126,7 @@ export const actualizarProducto = async (req, res) => {
 
         // Obtener el producto actual antes de actualizar
         const { data: productoActual, error: errorBuscar } = await supabase.from('producto').select('*').eq('id', id).single();
-        if (errorBuscar) return res.status(400).json({message: "ID del producto no válido"});
+        if (errorBuscar) return res.status(400).json({ message: "Error en la base de datos" });
         if (!productoActual) return res.status(404).json({ message: "Producto no encontrado." });
 
         // Crear un nuevo objeto Producto con la información actualizada
@@ -150,7 +150,7 @@ export const actualizarProducto = async (req, res) => {
             proveedor: productoActualizado.proveedor
         }).eq('id', id);
 
-        if (error) throw error;
+        if (error) return res.status(404).json({ message: "Error en la base de datos" });
 
         return res.status(200).json({ message: "Producto actualizado con éxito.", data });
     } catch (e) {
@@ -166,13 +166,13 @@ export const eliminarProducto = async (req, res) => {
     try {
         // Verificar si el producto existe antes de eliminarlo
         const { data: productoExistente, error: errorBuscar } = await supabase.from('producto').select('*').eq('id', id).single();
-        if (errorBuscar) return res.status(400).json({message: "ID del prodcuto no válido"});
+        if (errorBuscar) return res.status(400).json({ message: "Error en la base de datos" });
         if (!productoExistente) return res.status(404).json({ message: "Producto no encontrado." });
 
         // Eliminar producto
         const { data, error } = await supabase.from('producto').delete().eq('id', id);
 
-        if (error) throw error;
+        if (error) return res.status(404).json({ message: "Error en la base de datos" });
 
         return res.status(200).json({ message: "Producto eliminado con éxito." });
     } catch (e) {
