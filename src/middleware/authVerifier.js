@@ -9,8 +9,6 @@ const verificarSesion = async (req, res, next) => {
 
     const token = authHeader.split(' ')[1]; // Extrae solo el token
 
-    console.log("\n🔹 Token de autorización recibido:\n", token, "\n");
-
     try {
         // Obtener el usuario desde Supabase Auth
         const { data: userData, error: authError } = await supabase.auth.getUser(token);

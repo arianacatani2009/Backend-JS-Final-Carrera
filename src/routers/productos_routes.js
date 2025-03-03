@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.post('/productos/registrar', verificarSesion, registrarProducto);       // Registrar un producto
 router.get('/productos', verificarSesion, obtenerProductos);        // Obtener lista de productos
-router.get('/productos/:id', verificarSesion, obtenerProductoPorId); // Obtener producto por ID
-router.put('/productos/:id', verificarSesion, actualizarProducto);  // Editar producto por ID
-router.delete('/productos/:id', verificarSesion, eliminarProducto); // Eliminar producto por ID
+router.get('/productos/ver/:id', verificarSesion, obtenerProductoPorId); // Obtener producto por ID
+router.put('/productos/editar/:id', verificarSesion, actualizarProducto);  // Editar producto por ID
+router.delete('/productos/eliminar/:id', verificarSesion, eliminarProducto); // Eliminar producto por ID
 
 export default router;

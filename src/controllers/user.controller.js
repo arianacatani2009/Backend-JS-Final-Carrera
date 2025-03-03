@@ -63,14 +63,12 @@ const iniciarSesion = async (req, res) => {
             password,
         });
 
-        console.log("Respuesta de Supabase:", data, error);
-
         if (error || !data.user) {
             return res.status(401).json({ message: 'Credenciales incorrectas o usuario no encontrado.' });
         }
 
-        // Generamos el token de sesión (se genera automáticamente en Supabase)
-        const token = data.session.access_token;  // El token generado por Supabase Auth
+        // Generamos el token de sesión (se genera automáticamente en Supabase Auth)
+        const token = data.session.access_token;
 
         return res.json({ message: 'Inicio de sesión exitoso', token });
     } catch (error) {
