@@ -11,6 +11,6 @@ router.post('/usuario/recuperar-password', user.solicitarRecuperacion)
 router.get('/usuario/informacion', verificarSesion, user.obtenerDatosUsuario)
 router.put('/usuario/editar-info', verificarSesion, user.editarUsuario)
 // Modificamos la ruta para que el token se pase como parámetro en la URL
-router.put('/usuario/cambiar-password/:token', user.cambiarContraseña);
+router.put('/usuario/cambiar-password/:token', user.cambiarContrasena);
 
 export default router;

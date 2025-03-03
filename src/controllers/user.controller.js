@@ -109,7 +109,7 @@ const solicitarRecuperacion = async (req, res) => {
 };
 
 // 4. Función para cambiar la contraseña después de hacer clic en el enlace de recuperación
-const cambiarContraseña = async (req, res) => {
+const cambiarContrasena = async (req, res) => {
     const { token } = req.params;  // El token se pasa como parámetro en la URL
     const { newPassword } = req.body;  // La nueva contraseña se pasa en el cuerpo de la solicitud
 
@@ -236,4 +236,4 @@ const editarUsuario = async (req, res) => {
 };
 
 
-export { registrarUsuario, iniciarSesion, obtenerDatosUsuario, editarUsuario, solicitarRecuperacion, cambiarContraseña };
+export { registrarUsuario, iniciarSesion, obtenerDatosUsuario, editarUsuario, solicitarRecuperacion, cambiarContrasena };
