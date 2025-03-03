@@ -21,7 +21,7 @@ A diferencia de Firebase, Supabase es una alternativa relacional (con base en Po
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=nodejs,postgresql,supabase" />
+    <img src="https://skillicons.dev/icons?i=nodejs,postgresql,supabase"  alt=""/>
   </a>
 </p>
 
@@ -32,89 +32,39 @@ El proyecto se compone de los siguientes archivos y directorios, fundamentales p
 ```
 
 └── 📁Backend-JS-Final-Carrera
-
-    └── 📁images
-
-        └── Clientes.png
-
-        └── 📁endpoints
-
-            └── 📁cliente
-
-            └── 📁usuario
-
-                └── Correo de Activacion.png
-
-                └── Info_user.png
-
-                └── Login.png
-
-                └── Registro.png
-
-        └── EsquemaDB.png
-
-        └── Pedidos.png
-
-        └── Producto.png
-
-        └── Usuario.png
-
     └── 📁src
-
         └── 📁controllers
-
             └── cliente.controller.js
-
             └── user.controller.js
-
             └── pedidos.controller.js
-
             └── productos.controller.js
 
         └── 📁database
-
             └── database.js
-
             └── 📁models
-
                 └── Cliente.js
-
                 └── Ordenes.js
-
                 └── Productos.js
-
                 └── Usuario.js
 
         └── index.js
 
         └── 📁middleware
-
             └── authVerifier.js
 
         └── 📁routers
-
             └── cliente_routes.js
-
             └── usuarios_routes.js
-
             └── pedidos_routes.js
-
             └── productos_routes.js
-
         └── server.js
-
+        
     └── .env
-
     └── .gitignore
-
     └── package-lock.json
-
     └── package.json
-
     └── README.md
-
 ```
-
 
 ### Diagrama de bases de datos
 
@@ -142,21 +92,21 @@ Para construir el proyecto desde el código fuentes, es necesario contar con Nod
 ### Comportamiento de rutas y comunicación con la base de datos
 
 - #### Conexión a la base de datos
-- La conexión a la base de datos se realiza mediante la dirección del proyecto, una URL entregada por SUPABASE como indentificador primario de los proyectos; y, la API Key asociada al mismo. Esta comunicación se establece a través del cliente proporcionado por la librería de Supabase JS.
-
-  ![img](./images/conexion.png)
+  - La conexión a la base de datos se realiza mediante la dirección del proyecto, una URL entregada por SUPABASE como identificador primario de los proyectos; y, la API Key asociada al mismo. Esta comunicación se establece a través del cliente proporcionado por la librería de Supabase JS.
+   ![img](./images/conexion.png)
+  
 - #### Definición de rutas
-- La rutas se definen como elementos de comunicación entre un enlace (dirección web) y las funciones asociadas a estas. Con las rutas podemos identificar las diferentes acciones que se realizaron en determinados puntos de la aplicación, ya sea desde un registro o manejo de tokens, a acciones más complejas, como listas de pedidos, etc.
+  - Las rutas se definen como elementos de comunicación entre un enlace (dirección web) y las funciones asociadas a estas. Con las rutas podemos identificar las diferentes acciones que se realizaron en determinados puntos de la aplicación, ya sea desde un registro o manejo de tokens, a acciones más complejas, como listas de pedidos, etc.
 
-  ![img](./images/rutas.png)
+    ![img](./images/rutas.png)
 - #### Definición de controladores
 - Los controladores son las funciones que realizan diferentes acciones y consultas en nuestra aplicación. Desde un registro de cliente a una visualización de datos, la facilidad con la que los controladores agilizan el proceso de programación se limita a la necesidad de la misma. Estos controladores se asocian a una ruta (y a un middleware, si es necesario, para realizar una capa extra de funcionalidad antes de llamar al flujo de trabajo principal).
 
   ![img](./images/controladores.png)
 
-### Documentación de la API
+### Documentación de la API 
+Para poder visualizar toda la documentación de la API Rest desarrollada, ingresa al siguiente enlace: 
 
-### Pruebas - REST API
 
 ### Referencias
 

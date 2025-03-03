@@ -1,0 +1,562 @@
+openapi: 3.0.0
+info:
+  title: Examen de Fin de Carrera | Documentación de API
+  description: Esta API permite gestionar usuarios, clientes, productos y pedidos para una plataforma de ventas.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:4000/api
+  - url: http://localhost:4000/api
+
+paths:
+  /usuario/registro:
+    post:
+      summary: Registra un nuevo usuario
+      description: Permite registrar un nuevo usuario en el sistema.
+      operationId: registrarUsuario
+      requestBody:
+        description: Datos del usuario a registrar
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                telefono:
+                  type: string
+      responses:
+        '201':
+          description: Usuario registrado correctamente
+        '400':
+          description: Datos de registro incorrectos
+
+  /usuario/login:
+    post:
+      summary: Inicia sesión con las credenciales del usuario
+      description: Permite iniciar sesión con email y contraseña del usuario.
+      operationId: iniciarSesion
+      requestBody:
+        description: Credenciales de inicio de sesión
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Sesión iniciada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Credenciales incorrectas
+
+  /usuario/recuperar-password:
+    post:
+      summary: Solicita la recuperación de la contraseña
+      description: Permite al usuario recuperar su contraseña mediante su correo electrónico.
+      operationId: solicitarRecuperacion
+      requestBody:
+        description: Correo del usuario para recuperar la contraseña
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Se envió un enlace para recuperar la contraseña
+        '400':
+          description: Error al enviar el enlace de recuperación
+
+  /usuario/informacion:
+    get:
+      summary: Obtiene los datos del usuario autenticado
+      description: Devuelve los datos del usuario autenticado.
+      operationId: obtenerDatosUsuario
+      responses:
+        '200':
+          description: Información del usuario
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nombre:
+                    type: string
+                  email:
+                    type: string
+                  telefono:
+                    type: string
+        '401':
+          description: No autorizado
+
+  /usuario/editar-info:
+    put:
+      summary: Actualiza la información del usuario autenticado
+      description: Permite actualizar los datos del usuario autenticado.
+      operationId: editarUsuario
+      requestBody:
+        description: Datos a actualizar del usuario
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                telefono:
+                  type: string
+      responses:
+        '200':
+          description: Información del usuario actualizada correctamente
+        '400':
+          description: Datos inválidos
+
+  /usuario/cambiar-password/{token}:
+    put:
+      summary: Cambia la contraseña del usuario con un token de recuperación
+      description: Permite cambiar la contraseña usando un token recibido por correo.
+      operationId: cambiarContrasena
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Nueva contraseña para el usuario
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nueva_password:
+                  type: string
+      responses:
+        '200':
+          description: Contraseña cambiada correctamente
+        '400':
+          description: Token inválido o expirado
+
+  /cliente/registro:
+    post:
+      summary: Registra un nuevo cliente
+      description: Permite registrar un nuevo cliente en el sistema.
+      operationId: registrarCliente
+      requestBody:
+        description: Datos del cliente a registrar
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cedula:
+                  type: string
+                nombre:
+                  type: string
+                direccion:
+                  type: string
+                telefono:
+                  type: string
+      responses:
+        '201':
+          description: Cliente registrado correctamente
+        '400':
+          description: Datos de cliente incorrectos
+
+  /cliente/ver/{cedula}:
+    get:
+      summary: Obtiene los datos de un cliente por su cédula
+      description: Devuelve la información completa de un cliente usando su cédula.
+      operationId: obtenerClientePorCedula
+      parameters:
+        - name: cedula
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Información del cliente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cedula:
+                    type: string
+                  nombre:
+                    type: string
+                  direccion:
+                    type: string
+                  telefono:
+                    type: string
+        '404':
+          description: Cliente no encontrado
+
+  /clientes:
+    get:
+      summary: Obtiene todos los clientes
+      description: Devuelve una lista con todos los clientes registrados.
+      operationId: obtenerClientes
+      responses:
+        '200':
+          description: Lista de clientes
+          content:
+            application/json:
+              type: array
+              items:
+                type: object
+                properties:
+                  cedula:
+                    type: string
+                  nombre:
+                    type: string
+                  telefono:
+                    type: string
+
+  /cliente/actualizar/{cedula}:
+    put:
+      summary: Actualiza los datos de un cliente
+      description: Permite actualizar los datos de un cliente usando su cédula.
+      operationId: actualizarCliente
+      parameters:
+        - name: cedula
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Datos a actualizar del cliente
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                direccion:
+                  type: string
+                telefono:
+                  type: string
+      responses:
+        '200':
+          description: Cliente actualizado correctamente
+        '400':
+          description: Datos inválidos
+
+  /cliente/eliminar/{cedula}:
+    delete:
+      summary: Elimina un cliente por su cédula
+      description: Permite eliminar un cliente usando su cédula.
+      operationId: eliminarCliente
+      parameters:
+        - name: cedula
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cliente eliminado correctamente
+        '404':
+          description: Cliente no encontrado
+
+  /productos/registrar:
+    post:
+      summary: Registra un nuevo producto
+      description: Permite registrar un producto en el sistema.
+      operationId: registrarProducto
+      requestBody:
+        description: Datos del producto a registrar
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                codigo:
+                  type: string
+                descripcion:
+                  type: string
+                categoria:
+                  type: string
+                precio:
+                  type: number
+                  format: float
+                stock:
+                  type: integer
+                proveedor:
+                  type: string
+      responses:
+        '201':
+          description: Producto registrado correctamente
+        '400':
+          description: Datos de producto incorrectos
+
+  /productos:
+    get:
+      summary: Obtiene la lista de productos
+      description: Devuelve una lista de todos los productos registrados.
+      operationId: obtenerProductos
+      responses:
+        '200':
+          description: Lista de productos
+          content:
+            application/json:
+              type: array
+              items:
+                type: object
+                properties:
+                  nombre:
+                    type: string
+                  codigo:
+                    type: string
+                  descripcion:
+                    type: string
+                  categoria:
+                    type: string
+                  precio:
+                    type: number
+                    format: float
+                  stock:
+                    type: integer
+                  proveedor:
+                    type: string
+
+  /productos/ver/{id}:
+    get:
+      summary: Obtiene los detalles de un producto por su ID
+      description: Devuelve los detalles de un producto por su ID.
+      operationId: obtenerProductoPorId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detalles del producto
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nombre:
+                    type: string
+                  codigo:
+                    type: string
+                  descripcion:
+                    type: string
+                  categoria:
+                    type: string
+                  precio:
+                    type: number
+                    format: float
+                  stock:
+                    type: integer
+                  proveedor:
+                    type: string
+        '404':
+          description: Producto no encontrado
+
+  /productos/editar/{id}:
+    put:
+      summary: Edita un producto por su ID
+      description: Permite actualizar los datos de un producto usando su ID.
+      operationId: editarProducto
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Datos del producto a actualizar
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                descripcion:
+                  type: string
+                precio:
+                  type: number
+                  format: float
+                stock:
+                  type: integer
+                proveedor:
+                  type: string
+      responses:
+        '200':
+          description: Producto actualizado correctamente
+        '400':
+          description: Datos inválidos
+
+  /productos/eliminar/{id}:
+    delete:
+      summary: Elimina un producto por su ID
+      description: Permite eliminar un producto usando su ID.
+      operationId: eliminarProducto
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Producto eliminado correctamente
+        '404':
+          description: Producto no encontrado
+
+  /pedidos/nuevo:
+    post:
+      summary: Crea un nuevo pedido
+      description: Permite crear un nuevo pedido de productos.
+      operationId: agregarPedido
+      requestBody:
+        description: Datos del pedido a registrar
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descripcion:
+                  type: string
+                cedula_cliente:
+                  type: string
+                id_producto:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Pedido creado correctamente
+        '400':
+          description: Datos de pedido incorrectos
+
+  /pedidos:
+    get:
+      summary: Obtiene la lista de pedidos
+      description: Devuelve todos los pedidos realizados en el sistema.
+      operationId: listarPedidos
+      responses:
+        '200':
+          description: Lista de pedidos
+          content:
+            application/json:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  descripcion:
+                    type: string
+                  fecha_creacion:
+                    type: string
+                    format: date
+                  estado:
+                    type: string
+
+  /pedidos/ver/{id}:
+    get:
+      summary: Obtiene un pedido por su ID
+      description: Devuelve los detalles de un pedido por su ID.
+      operationId: obtenerPedido
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detalles del pedido
+        '404':
+          description: Pedido no encontrado
+
+  /pedidos/ver/cliente/{cedula_cliente}:
+    get:
+      summary: Obtiene los pedidos de un cliente por su cédula
+      description: Devuelve todos los pedidos de un cliente usando su cédula.
+      operationId: obtenerPedidosPorCliente
+      parameters:
+        - name: cedula_cliente
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lista de pedidos del cliente
+        '404':
+          description: No se encontraron pedidos para el cliente
+
+  /pedidos/editar/{id}:
+    put:
+      summary: Edita un pedido por su ID
+      description: Permite actualizar los detalles de un pedido por su ID.
+      operationId: editarPedido
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Datos a actualizar del pedido
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descripcion:
+                  type: string
+                id_producto:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Pedido actualizado correctamente
+        '400':
+          description: Datos inválidos
+
+  /pedidos/eliminar/{id}:
+    delete:
+      summary: Elimina un pedido por su ID
+      description: Permite eliminar un pedido usando su ID.
+      operationId: eliminarPedido
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Pedido eliminado correctamente
+        '404':
+          description: Pedido no encontrado
