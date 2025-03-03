@@ -65,6 +65,10 @@ El proyecto se compone de los siguientes archivos y directorios, fundamentales p
     └── package.json
     └── README.md
 ```
+### Despliegue
+El servicio ha sido desplegado en Render, para acceder a un servicio en la nube robusto y eficiente. 
+
+El enlace de despliegue es: [https://backend-js-final-carrera.onrender.com](https://backend-js-final-carrera.onrender.com)
 
 ### Diagrama de bases de datos
 
@@ -105,7 +109,7 @@ Para construir el proyecto desde el código fuentes, es necesario contar con Nod
   ![img](./images/controladores.png)
 
 ### Documentación de la API 
-Para poder visualizar toda la documentación de la API Rest desarrollada, ingresa al siguiente enlace: 
+Para poder visualizar toda la documentación de la API Rest desarrollada, ingresa al siguiente enlace: [Documentación de API](https://backend-js-final-carrera.onrender.com/api/docs)
 
 
 ### Referencias
