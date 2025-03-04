@@ -22,7 +22,8 @@ app.set('port', process.env.port || 3000);
 app.use(express.json());
 
 // ------------- Definición de rutas
-
+//Ruta base
+app.get('/', (req, res) => res.status(200).send('Bienvenido al Backend del Examen de Final de Carrera'));
 // Cliente
 app.use('/api', clienteRoutes);
 // Usuario
