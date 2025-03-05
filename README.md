@@ -7,12 +7,6 @@ En este proyecto se presenta el proceso de diagramación, definición, estrcutur
 Este proyecto se ha realizado mediante la comunicación entre dos tecnologías de relevancia para el mundo de la programación, como son ExpressJS y Supabase.
 A diferencia de Firebase, Supabase es una alternativa relacional (con base en Postgress SQL) para el almacenamiento de datos; además de ofrecer autenticación y base de datos.
 
-<p align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=nodejs,postgresql,supabase"  alt=""/>
-  </a>
-</p>
-
 ### Estructura de archivos
 
 El proyecto se compone de los siguientes archivos y directorios, fundamentales para comprender el funcionamiento tatal del proyecto.
