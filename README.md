@@ -76,16 +76,6 @@ La base de datos posee una estructura sencilla, ligada a las claves primarias y 
 
 ![image](https://github.com/user-attachments/assets/297998f4-2d73-4d7f-a3b5-b470b13af9d6)
 
-
-Y las tablas se definen de la siguiente manera:
-
-
-|       Tabla Usuario       |      Tabla Clientes      |
-| :-----------------------: | :-----------------------: |
-| ![img](./images/Usuario.png) | ![img](./images/Clientes.png) |
-|   **Tabla Productos**   |    **Tabla Pedidos**    |
-| ![img](./images/Producto.png) | ![img](./images/Pedidos.png) |
-
 ### Construir el proyecto
 
 Para construir el proyecto desde el código fuentes, es necesario contar con Node 18+, Bun (para agilizar la ejecución de scripts y el server) y las variables de entorno de Superbase.
