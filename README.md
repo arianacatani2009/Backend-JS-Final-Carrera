@@ -2,17 +2,6 @@
 <h1 style="display:flex;justify-content: center;align-content: center; color: deepskyblue;"> Examen de Fin de Carrera - Component Backend </h1>
 En este proyecto se presenta el proceso de diagramación, definición, estrcutura y desarrollo del componente backend, de forma generalizada, para emplearlo en diferentes proyectos.
 
-## Indice
-
-- [Descripción al proyecto](#introducción-al-proyecto)
-- [Estructura de archivos](#estrcutura-de-archivos)
-- [Diagrama de bases de datos](#diagrama-de-bases-de-datos)
-- [Definición de endpoints](#definición-de-endpoints)
-- [Comportamiento de rutas y comunicación con base de datos](#comportamiento-de-rutas-y-comunicación-con-la-base-de-datos)
-- [Documentación de la API](#documentación-de-la-api)
-- [Pruebas de la REST API](#pruebas---rest-api)
-- [Referencias](#referencias)
-
 ### Introducción al Proyecto
 
 Este proyecto se ha realizado mediante la comunicación entre dos tecnologías de relevancia para el mundo de la programación, como son ExpressJS y Supabase.
@@ -80,7 +69,7 @@ La base de datos posee una estructura sencilla, ligada a las claves primarias y 
 Para construir el proyecto desde el código fuentes, es necesario contar con Node 18+, Bun (para agilizar la ejecución de scripts y el server) y las variables de entorno de Superbase.
 
 1. Clona el proyecto con el comando  ``git clone <url del repositorio>``.
-2. Instala las dependencias con: ``npm install (si usas NodeJS) o bun install (si usas Bun)``.
+2. Instala las dependencias con: ``npm install (si usas NodeJS)``.
 3. Ejecuta el entorno de desarrollo con ``npm run dev``.
 
 ### Comportamiento de rutas y comunicación con la base de datos
@@ -97,6 +86,9 @@ Para construir el proyecto desde el código fuentes, es necesario contar con Nod
 - Los controladores son las funciones que realizan diferentes acciones y consultas en nuestra aplicación. Desde un registro de cliente a una visualización de datos, la facilidad con la que los controladores agilizan el proceso de programación se limita a la necesidad de la misma. Estos controladores se asocian a una ruta (y a un middleware, si es necesario, para realizar una capa extra de funcionalidad antes de llamar al flujo de trabajo principal).
 
   ![img](./images/controladores.png)
+### Pruebas de rendimiento
+![image](https://github.com/user-attachments/assets/19b6f6f7-cfe4-49b4-b6ba-ee3893708cf6)
+![image](https://github.com/user-attachments/assets/74cc2db6-a48c-44f2-ac5f-9c5e0f02a341)
 
 ### Documentación de la API 
 Para poder visualizar toda la documentación de la API Rest desarrollada, ingresa al siguiente enlace: [Documentación de API](https://backend-js-final-carrera.onrender.com/api/docs)
