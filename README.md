@@ -74,7 +74,8 @@ El enlace de despliegue es: [https://backend-js-final-carrera.onrender.com](http
 
 La base de datos posee una estructura sencilla, ligada a las claves primarias y cardinalidades de las diferentes entidades. El mismo sea ha realizado con PostgresSQL y se define de la siguiente manera:
 
-![img](./images/EsquemaDB.png "Esquema de la base de datos")
+![image](https://github.com/user-attachments/assets/297998f4-2d73-4d7f-a3b5-b470b13af9d6)
+
 
 Y las tablas se definen de la siguiente manera:
 
