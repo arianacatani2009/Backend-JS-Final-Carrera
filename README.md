@@ -1,4 +1,3 @@
-<img src="https://foxminded.ua/wp-content/uploads/2023/11/chto-takoe-rest-api.webp" width="auto"></img>
 
 <h1 style="display:flex;justify-content: center;align-content: center; color: deepskyblue;"> Examen de Fin de Carrera - Component Backend </h1>
 En este proyecto se presenta el proceso de diagramación, definición, estrcutura y desarrollo del componente backend, de forma generalizada, para emplearlo en diferentes proyectos.
