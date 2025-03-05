@@ -80,7 +80,7 @@ Para construir el proyecto desde el código fuentes, es necesario contar con Nod
 - Los controladores son las funciones que realizan diferentes acciones y consultas en nuestra aplicación. Desde un registro de cliente a una visualización de datos, la facilidad con la que los controladores agilizan el proceso de programación se limita a la necesidad de la misma. Estos controladores se asocian a una ruta (y a un middleware, si es necesario, para realizar una capa extra de funcionalidad antes de llamar al flujo de trabajo principal).
 
   ![img](./images/controladores.png)
-### Pruebas de rendimiento
+### Pruebas de rendimiento en Apache jMeter
 ## USUARIO
 ![image](https://github.com/user-attachments/assets/edfb74f0-3f1c-4264-846e-e66f0e367c4d)
 ![image](https://github.com/user-attachments/assets/19b6f6f7-cfe4-49b4-b6ba-ee3893708cf6)
