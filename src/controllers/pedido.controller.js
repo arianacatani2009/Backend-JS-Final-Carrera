@@ -44,9 +44,9 @@ export const agregarPedido = async (req, res) => {
 
         // Obtener los productos con los códigos proporcionados
         const { data: productosData, error: errorProductos } = await supabase
-            .from('producto')
-            .select('codigo')
-            .in('codigo', productos); // Usar la columna "codigo" para la consulta
+            .from('tecnico')
+            .select('cedula')
+            .in('cedula', productos); // Usar la columna "codigo" para la consulta
 
         if (errorProductos) {
             console.error("Error al obtener productos:", errorProductos);
@@ -59,7 +59,7 @@ export const agregarPedido = async (req, res) => {
         }
 
         // Extraer los códigos de los productos obtenidos
-        const codigosProductos = productosData.map(producto => producto.codigo);
+        const codigosProductos = productosData.map(tecnico => tecnico.cedula);
 
         // Crear el pedido con los códigos de los productos
         const pedido = new Pedido({
@@ -122,9 +122,9 @@ export const obtenerPedido = async (req, res) => {
 
         // Obtener los detalles completos de los productos utilizando los códigos
         const { data: productos, error: errorProductos } = await supabase
-            .from('producto')
+            .from('tecnico')
             .select('*')
-            .in('codigo', codigosProductos);
+            .in('cedula', codigosProductos);
 
         if (errorProductos) return res.status(500).json({ error: 'Error al obtener los productos', detalles: errorProductos });
 

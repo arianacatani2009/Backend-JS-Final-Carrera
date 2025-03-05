@@ -3,11 +3,13 @@ import Cliente from '../database/models/Cliente.js'; // Accedemos al modelo Clie
 import { v4 as uuidv4, validate as isUUID } from 'uuid';// Importamos la librería para generar UUID
 
 const registrarCliente = async (req, res) => {
-    const {cedula, nombre, apellido, ciudad, email, direccion, telefono, fecha_nacimiento } = req.body;
+    const {cedula, nombre, apellido, ciudad, email, direccion, telefono, fecha_nacimiento, dependencia } = req.body;
+
+    console.log(req.body)
 
     try {
         // Verifica que todos los campos estén presentes
-        if (!cedula || !nombre || !apellido || !ciudad || !direccion || !email || !fecha_nacimiento) {
+        if (!cedula || !nombre || !apellido || !ciudad || !direccion || !email || !fecha_nacimiento || !dependencia) {
             return res.status(400).json({ message: "Todos los campos son obligatorios." });
         }   
 
@@ -34,12 +36,12 @@ const registrarCliente = async (req, res) => {
             email,
             direccion,
             telefono,
-            fecha_nacimiento
+            fecha_nacimiento,
+            dependencia
         };
 
-        console.log("Objeto cliente creado:", clienteData);
-
-        const cliente = new Cliente(clienteData); // Aquí se valida la cédula
+        const cliente = new Cliente(clienteData); 
+        console.log("Objeto enviado a Supabase:", clienteData);
 
         // Insertar cliente en la base de datos
         const { data, error } = await supabase.from('cliente').insert([{
@@ -51,8 +53,10 @@ const registrarCliente = async (req, res) => {
             email: cliente.email,
             direccion: cliente.direccion,
             telefono: cliente.telefono,
-            fecha_nacimiento: cliente.fecha_nacimiento
+            fecha_nacimiento: cliente.fecha_nacimiento,
+            dependencia: cliente.dependencia
         }]);
+        
 
         // Si ocurre un error al insertar
         if (error) {
